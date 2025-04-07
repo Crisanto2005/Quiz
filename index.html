@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hello, World!</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="topnav">
+    <a href="#">Facebook</a>
+    <a class="friends" href="friends.html">Friends</a>
+  </div>
+  
+  <div class="main-container">
+    <div class="left-section">
+      <div class="welcome">
+        <h1>WELCOME TO</h1>
+        <h1>FACEBOOK</h1>
+      </div>
+      <div class="features">
+        <ul class="features">
+          <li>📱 Social Networking Platform – Connects people worldwide through posts, photos, and videos.</li>
+          <li>🗨️ Messaging & Chat – Includes Messenger for real-time conversations and group chats.</li>
+          <li>📰 News Feed – Personalized stream of updates from friends, pages, and groups.</li>
+          <li>📸 Media Sharing – Upload and share photos, stories, and live videos easily.</li>
+          <li>👥 Groups & Communities – Join or create interest-based groups for discussions and events.</li>
+          <li>📅 Events – Create and manage events with RSVPs, reminders, and details.</li>
+          <li>📈 Marketplace & Ads – Buy/sell items locally and run targeted advertisements.</li>
+          <li>🔒 Privacy Controls – Customize who can see your posts and manage account security.</li>
+        </ul>
+      </div>
+    </div>
+  
+    <div class="marketplace">
+      <h3>Marketplace</h3>      
+      <ul id="mrk"></ul>
+    </div>
+  </div>
+  
+
+  <script>
+    fetch('https://mdn.github.io/learning-area/javascript/apis/fetching-data/can-store/products.json')
+      .then(response => response.json())
+      .then(data => {
+        const productList = document.getElementById('mrk');
+  
+        data.forEach(product => {
+          const item = document.createElement('li');
+          item.classList.add('product-item');
+          item.innerHTML = `
+            <h4>${product.name}</h4>
+            <p>${product.price}</p>
+            <p>${product.type.charAt(0).toUpperCase() + product.type.slice(1)}</p>
+          `;
+          productList.appendChild(item);
+        });
+      })
+      .catch(error => {
+        console.error('Error fetching product data:', error);
+      });
+  </script>
+  
+</body>
+</html>
